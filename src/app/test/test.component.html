@@ -1,0 +1,65 @@
+<p>test  {{name}} {{2+2}} {{"welcome" + name}} {{name.length}} works! </p>
+<h1>{{chck()}}</h1>
+<h2 [class]='style1'>{{url}}</h2>
+<h2 [class.danger]='errors'>{{url}}</h2>
+<h2 [ngClass]='msgclass'>{{url}}</h2>
+<h2 [style.color]='color'>{{url}}</h2>
+<h2 [style.color]="errors? 'red' : 'green'">{{url}}</h2>
+<h2 [ngStyle]='styleObj'>{{url}}</h2>
+<h1 id={{id}}></h1>
+<h1 [id] = "id"></h1>
+<input [disabled]=rdy value="shazad" type="text">
+<button (click)="greet($event)">Greet</button>
+<button (click)="greets='Hello inLine'">Greet in Line</button>
+<input #TempVar type="text">
+<button (click)="getVal(TempVar.value)">show value of box</button>
+<h1>{{val}}</h1>
+<h1>{{greets}}</h1>
+<br/>
+<br/>
+<br/>
+<input [(ngModel)]="user" type="text"> 
+{{user}}
+<input [(ngModel)]="pass" type="text">
+{{pass}}
+<h1 *ngIf="errors; else elseblock">ngIF</h1>
+<ng-template #elseblock>
+    <h1>ngElse</h1>
+</ng-template>
+
+<div *ngIf="errors; then ifBlock; else elseBlok"></div>
+    <ng-template #ifBlock>
+        <h1>if Seconfd option</h1>
+    </ng-template>
+    <ng-template #elseBlok>
+        <h1>else Second Option</h1>
+    </ng-template>
+
+
+ <div [ngSwitch]="user">
+<h1 *ngSwitchCase="'shazad'">Hey Handsome</h1>
+<h1 *ngSwitchCase="'zeeshan'">Hey Brother</h1>
+<h1 *ngSwitchDefault>No Match</h1>
+ </div>   
+
+ <div *ngFor="let name of fname; index as i">
+     <h2>{{i}}{{name}}</h2>
+ </div>
+
+ <h1>component interaction {{appData}}</h1>
+ <button (click)="fireEvent()"> Send msg to App</button>
+
+ pipes:
+ 
+ <h1>{{name | uppercase}}</h1>
+ <h1>{{name | titlecase}}</h1>
+ <h1>{{5.7865 | number:'2.2-3'}}</h1>
+ <h1>{{0.25 | percent}}</h1>
+ <h1>{{0.25 | currency: 'PKR'}}</h1>
+ <h1>{{date | date: 'short'}}</h1>
+ <h1>{{date | date: 'shortTime'}}</h1>
+ <div *ngFor="let item of DI_service_list">
+    <h1>{{item.userId}} {{item.id}} {{item.title}} {{item.completed}}</h1>
+    
+     
+ </div>
