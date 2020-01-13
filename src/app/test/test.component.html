@@ -63,3 +63,6 @@
     
      
  </div>
+ <div (click)='onSelect(data)' *ngFor="let data of routParamData">
+        <h1>{{data.id}} {{data.name}}</h1>
+ </div>

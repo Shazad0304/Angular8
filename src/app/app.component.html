@@ -6,17 +6,37 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 <div>
     <span>{{ title }} app Component is running! {{msgChild}}</span>
-     <app-test (childEvent)="msgChild=$event" [appData]="title"></app-test>
-
   </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Angular Tutorials</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="depart">testComponent</a></li>
+        <li><a href="emp">routComponent</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>
 
 
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- for routing * * * https://www.youtube.com/watch?v=Nehk4tBxD4o&list=PLC3y8-rFHvwhBRAgFinJR8KHIrCdTkZcZ&index=23 -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
 <!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
@@ -26,4 +46,6 @@
 
 
 
-<router-outlet></router-outlet>
+<router-outlet>
+  
+</router-outlet>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FullnameService } from '../fullname.service';
+import {Router} from '@angular/router'
 
 
 @Component({
@@ -25,6 +26,10 @@ public fname = ['shazad','shiraz','madhani'];
 public date = new Date();
 public DI_service_list =[]; //chck service,appmodule for it
 public Apitest = {};
+public routParamData = [
+  {'id': 1,'name':'shazad'},
+  {'id':2,'name':'zeeshan'}
+]
 //dependency injection https://www.youtube.com/watch?v=69VeYoKzL6I&list=PLC3y8-rFHvwhBRAgFinJR8KHIrCdTkZcZ&index=19
 @Input() public appData;
 @Output() public childEvent = new EventEmitter();
@@ -39,13 +44,17 @@ public styleObj = {
   color: "blue",
   fontStyle: "italic"
 }
-  constructor(private _ServiceList: FullnameService) { }
+  constructor(private _ServiceList: FullnameService,private router: Router) { }
 
   ngOnInit() {
     this._ServiceList.getList()
     .subscribe(x => this.DI_service_list = x); // api call
 
   
+  }
+
+  onSelect(data){
+    this.router.navigate(['/emp',data.id]);
   }
 
   chck(){
