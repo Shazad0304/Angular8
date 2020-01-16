@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FullnameService } from '../fullname.service';
-import {Router} from '@angular/router'
+import {ActivatedRoute, ParamMap,Router} from '@angular/router'
 
 
 @Component({
@@ -26,6 +26,7 @@ public fname = ['shazad','shiraz','madhani'];
 public date = new Date();
 public DI_service_list =[]; //chck service,appmodule for it
 public Apitest = {};
+public backMsg = '';
 public routParamData = [
   {'id': 1,'name':'shazad'},
   {'id':2,'name':'zeeshan'}
@@ -44,9 +45,11 @@ public styleObj = {
   color: "blue",
   fontStyle: "italic"
 }
-  constructor(private _ServiceList: FullnameService,private router: Router) { }
+  constructor(private _ServiceList: FullnameService,private router: Router,private arout: ActivatedRoute) { }
 
   ngOnInit() {
+    this.arout.paramMap.subscribe((params: ParamMap)=>this.backMsg = params.get('id'));
+
     this._ServiceList.getList()
     .subscribe(x => this.DI_service_list = x); // api call
 
@@ -54,7 +57,9 @@ public styleObj = {
   }
 
   onSelect(data){
-    this.router.navigate(['/emp',data.id]);
+    //this.router.navigate(['/emp',data.id]); //is me agar rout change kia module se sab k pass ja kr change krna parega
+    //or
+    this.router.navigate([data.id],{relativeTo: this.arout})//yeh auto karega
   }
 
   chck(){

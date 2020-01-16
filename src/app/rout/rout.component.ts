@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap }  from '@angular/router'
+import { ActivatedRoute, ParamMap, Router }  from '@angular/router'
 
 @Component({
   selector: 'app-rout',
@@ -9,7 +9,7 @@ import { ActivatedRoute, ParamMap }  from '@angular/router'
 export class RoutComponent implements OnInit {
 public id;
 public message = '';
-  constructor(private rout: ActivatedRoute) { }
+  constructor(private rout: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     //this.id = parseInt(this.rout.snapshot.paramMap.get('id'))
@@ -20,4 +20,10 @@ public message = '';
     }
   }
 
+  perform(){
+   this.router.navigate(['../',{id:this.id}]); 
+  }
+  shChild(){
+    this.router.navigate(['childs'],{relativeTo:this.rout})
+  }
 }
