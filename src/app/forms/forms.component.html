@@ -3,26 +3,40 @@
 
 <div class="container-fluid">
     <h1>Form</h1>
-    <form #userform="ngForm">
+    <form #userform="ngForm" (ngSubmit)="onSubmit()">
         {{userform.value | json }}
+        <br/>
+        {{userData | json }}
+        <br/>
+        form valid: {{userform.form.valid}}
         <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-contorl" name="UserName" ngModel>
+                <input type="text" (change)="check(validation.value)" #validation='ngModel' required class="form-contorl" name="UserName" [(ngModel)]='userData.name'>
+                <br/><small class="text-danger" [class.d-none]="validation.valid">Name is required</small>
+                <br/><small *ngIf="validation.invalid">if name is required</small>
+                <br/><small *ngIf="tick">This is you boy</small>
 
         </div>
+        Value Changed: {{validation.dirty}}
+        Value not changed: {{validation.pristine}}
+        input accessed: {{validation.touched}}
+        input not accessed: {{validation.untouched}}
+        input valid: {{validation.valid}}
+        input not valid: {{validation.invalid}}
+        
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-contorl" name="email" ngModel>
+            <input type="email" class="form-contorl" name="email" [(ngModel)]='userData.email'>
             
     </div>
     <div class="form-group">
         <label>Phone</label>
-        <input type="tel" class="form-contorl" name="Phone" ngModel>
+        <input type="tel" class="form-contorl" name="Phone" [(ngModel)]='userData.phone'>
         
 </div>
 <div class="form-group">
     <label>Gender</label>
-    <select class="custom-select" name="gender" ngModel>
+    <select class="custom-select" name="gender" [(ngModel)]='userData.gender'>
         <option selected>Choose</option>
         <option *ngFor='let i of array'>{{i}}</option>
     </select>
@@ -31,15 +45,15 @@
 <div ngModelGroup='address'>
     <div class="form-group">
         <label>City</label>
-        <input type="text" class="form-contorl" name="city" ngModel>
+        <input type="text" class="form-contorl" name="city" [(ngModel)]='userData.city'>
         
 </div>
 <div class="form-group">
     <label>Country</label>
-    <input type="text" class="form-contorl" name="country" ngModel>
+    <input type="text" class="form-contorl" name="country" [(ngModel)]='userData.country'>
     
 </div>
 </div>
-<button class='btn btn-primary' type="submit">Submit</button>
+<button [disabled]="userform.form.invalid" class='btn btn-primary' type="submit">Submit</button>
     </form>
 </div>
