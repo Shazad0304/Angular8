@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <h2>Registration Form</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        {{registrationForm.value | json}}
+        <div class="form-group">
+            <label>Username</label>
+            <input [class.is-invalid]="registrationForm.get('username').invalid" formControlName="username" type="text" class="form-control">
+            <h5 [class.d-none]="registrationForm.get('username').valid" class="text-danger">Required</h5>
+            <h5 *ngIf="registrationForm.get('username').errors?.minlength">it must be min 4</h5>
+            <h5 *ngIf="registrationForm.get('username').errors?.forbidName">it must not be {{registrationForm.get('username').errors?.forbidName.value}}</h5>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input formControlName="email" type="email" class="form-control">
+            <button type="button" (click)="addControl()">add alternate email</button>
+            <div formArrayName="alternateEmail" *ngFor="let email of alterEmail().controls; let i=index ">
+            
+                <input [formControlName]="i" type="email" class="form-control">
+                
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label>Password</label>
+            <input formControlName="password" type="password" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="cpassword" type="password" class="form-control">
+            <h5 *ngIf="registrationForm.errors?.misMatch" >Pass unmatched</h5>
+        </div>
+        <div formGroupName="address">
+
+            <div class="form-group">
+                <label>City</label>
+                <input formControlName="city" type="text" class="form-control">
+    
+            </div>
+
+            <div class="form-group">
+                <label>State</label>
+                <input formControlName="state" type="text" class="form-control">
+    
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary" type="button">Register</button>
+        <button (click)="getName()" class="btn btn-primary" type="button">Get the Maker Name</button>
+    </form>
+</div>

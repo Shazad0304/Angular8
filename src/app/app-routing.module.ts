@@ -6,6 +6,7 @@ import { ErrorsComponent } from './errors/errors.component';
 import { AppComponent } from './app.component';
 import { ChildRouteComponent } from './child-route/child-route.component';
 import { FormsComponent } from './forms/forms.component';
+import { ReactiveformComponent } from './reactiveform/reactiveform.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   {path: 'emp',component:RoutComponent},
   {path: 'forms',component:FormsComponent},
+  {path: 'rforms',component:ReactiveformComponent},
   {path: "**",component:ErrorsComponent}
 ];
 

@@ -2,6 +2,7 @@
 <p>forms works!</p>
 
 <div class="container-fluid">
+    <div *ngIf='errorMsg'>{{errorMsg}}</div>
     <h1>Form</h1>
     <form #userform="ngForm" (ngSubmit)="onSubmit()">
         {{userform.value | json }}

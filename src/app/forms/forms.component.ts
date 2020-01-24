@@ -13,6 +13,7 @@ export class FormsComponent implements OnInit {
   public array = ['male','female','rather not to say'];
   userData = new Datas('','shazadshiraz@gmail.com','03042510345','Karachi','Pakistan','male')
   public tick = false;
+  public errorMsg = '';
 
   constructor(private postService: PostService) { }
 
@@ -33,7 +34,7 @@ export class FormsComponent implements OnInit {
   onSubmit(){
     console.log(this.userData);
     this.postService.sendData(this.userData)
-    .subscribe(data=> console.log('Success',data),error => console.error('error',error)
+    .subscribe(data=> console.log('Success',data),error => this.errorMsg = error.statusText
     )
     
   }
